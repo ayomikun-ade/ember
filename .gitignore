@@ -20,6 +20,12 @@
 # production
 /build
 
+# tests
+/coverage
+/playwright-report
+/test-results
+/.playwright
+
 # misc
 .DS_Store
 *.pem
