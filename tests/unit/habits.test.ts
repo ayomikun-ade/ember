@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { toggleHabitCompletion } from '@/lib/habits';
+import { createHabit, toggleHabitCompletion } from '@/lib/habits';
 import type { Habit } from '@/types/habit';
 
 function makeHabit(completions: string[] = []): Habit {
@@ -40,5 +40,23 @@ describe('toggleHabitCompletion', () => {
     const result = toggleHabitCompletion(habit, '2025-04-26');
     const unique = new Set(result.completions);
     expect(unique.size).toBe(result.completions.length);
+  });
+});
+
+describe('createHabit', () => {
+  it('creates a daily habit owned by the given user with no completions', () => {
+    const habit = createHabit({
+      name: 'Drink Water',
+      description: 'Stay hydrated',
+      userId: 'u1',
+    });
+    expect(habit.userId).toBe('u1');
+    expect(habit.name).toBe('Drink Water');
+    expect(habit.description).toBe('Stay hydrated');
+    expect(habit.frequency).toBe('daily');
+    expect(habit.completions).toEqual([]);
+    expect(typeof habit.id).toBe('string');
+    expect(habit.id.length).toBeGreaterThan(0);
+    expect(typeof habit.createdAt).toBe('string');
   });
 });

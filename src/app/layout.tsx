@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Habit Tracker",
-  description: "A mobile-first habit tracker that works offline.",
+  title: "Ember — Habit Tracker",
+  description: "Build daily habits and keep the streak alive. Works offline.",
 };
 
 export const viewport: Viewport = {
