@@ -264,6 +264,68 @@ describe-block names and test titles.
 
 ---
 
+## Contributing
+
+This is a learning project (HNG Stage 3 task) but pull requests and issues are
+welcome.
+
+### Workflow
+
+1. Branch from `main` with a topic branch — `feat/x`, `fix/x`, `docs/x`,
+   `test/x`, `chore/x`.
+2. After cloning fresh, run `pnpm install` and
+   `pnpm exec playwright install chromium`.
+3. Write code, then add or update tests for the change.
+4. Run the full pipeline locally before opening a PR:
+
+   ```bash
+   pnpm lint
+   pnpm build
+   pnpm test
+   ```
+
+   All three must pass — unit, integration, and e2e.
+
+### Commit style
+
+Conventional commits with a scope where it helps:
+`feat(dashboard): ...`, `fix(streaks): ...`, `docs: ...`,
+`test(e2e): ...`, `chore: ...`. Keep the subject under 72 characters and
+explain *why* in the body when it isn't obvious from the diff.
+
+### PR checklist
+
+- [ ] Tests added or updated (unit / integration / e2e as appropriate)
+- [ ] `pnpm test` passes
+- [ ] `pnpm lint` clean and `pnpm build` compiles
+- [ ] README updated if you changed a public surface (script, env var, route,
+      `localStorage` key, dependency)
+- [ ] New runtime or dev dependencies justified in the *Trade-offs* section
+- [ ] All required `data-testid` values still present and behaving the same
+- [ ] No changes to the exact describe-block names or test titles in
+      `tests/` — they're the spec contract
+
+### Things that are load-bearing — don't rename
+
+These are contracts the TRD locks down and graders verify mechanically:
+
+- The three `localStorage` keys in [src/lib/constants.ts](src/lib/constants.ts).
+- The exported utility names in `src/lib`: `getHabitSlug`,
+  `validateHabitName`, `calculateCurrentStreak`, `toggleHabitCompletion`.
+- The required `data-testid` values listed under
+  *Required test ids (all wired)* above.
+- The exact describe-block names and test titles in `tests/unit/`,
+  `tests/integration/`, and `tests/e2e/`.
+
+If one of these genuinely needs to change, open an issue first.
+
+### Reporting issues
+
+Please include the steps to reproduce, expected vs. actual behaviour, and the
+output of `pnpm test` if a test is involved. Screenshots help for UI bugs.
+
+---
+
 ## Deploy (Vercel)
 
 ```bash

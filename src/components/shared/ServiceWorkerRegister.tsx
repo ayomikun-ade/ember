@@ -7,6 +7,14 @@ export function ServiceWorkerRegister() {
     if (typeof window === 'undefined') return;
     if (!('serviceWorker' in navigator)) return;
 
+    if (process.env.NODE_ENV !== 'production') {
+      navigator.serviceWorker
+        .getRegistrations()
+        .then((regs) => regs.forEach((r) => r.unregister()))
+        .catch(() => undefined);
+      return;
+    }
+
     const onLoad = () => {
       navigator.serviceWorker.register('/sw.js').catch(() => {
         /* registration failure is non-fatal */

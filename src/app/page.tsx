@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { SplashScreen } from '@/components/shared/SplashScreen';
-import { getSession } from '@/lib/storage';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { SplashScreen } from "@/components/shared/SplashScreen";
+import { getSession } from "@/lib/storage";
 
-const SPLASH_DURATION_MS = 1100;
+const SPLASH_DURATION_MS = 1400;
 
 export default function Home() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const id = window.setTimeout(() => {
       const session = getSession();
-      router.replace(session ? '/dashboard' : '/login');
+      router.replace(session ? "/dashboard" : "/login");
     }, SPLASH_DURATION_MS);
 
     return () => window.clearTimeout(id);
