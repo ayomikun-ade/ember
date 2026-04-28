@@ -14,6 +14,10 @@ function normalizeEmail(email: string): string {
 
 export function signupUser(email: string, password: string): AuthResult {
   const normalized = normalizeEmail(email);
+
+  if (!normalized) return { ok: false, error: 'Email is required' };
+  if (!password) return { ok: false, error: 'Password is required' };
+
   const users = getUsers();
 
   if (users.some((u) => u.email === normalized)) {
@@ -34,6 +38,11 @@ export function signupUser(email: string, password: string): AuthResult {
 
 export function loginUser(email: string, password: string): AuthResult {
   const normalized = normalizeEmail(email);
+
+  if (!normalized || !password) {
+    return { ok: false, error: 'Invalid email or password' };
+  }
+
   const user = getUsers().find(
     (u) => u.email === normalized && u.password === password,
   );
