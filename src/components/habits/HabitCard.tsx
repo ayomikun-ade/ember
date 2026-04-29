@@ -1,13 +1,13 @@
-import { HugeiconsIcon } from '@hugeicons/react';
+import { HugeiconsIcon } from "@hugeicons/react";
 import {
   CheckmarkCircle02Icon,
   Delete02Icon,
   Fire02Icon,
   PencilEdit02Icon,
-} from '@hugeicons/core-free-icons';
-import { calculateCurrentStreak } from '@/lib/streaks';
-import { getHabitSlug } from '@/lib/slug';
-import type { Habit } from '@/types/habit';
+} from "@hugeicons/core-free-icons";
+import { calculateCurrentStreak } from "@/lib/streaks";
+import { getHabitSlug } from "@/lib/slug";
+import type { Habit } from "@/types/habit";
 
 type Props = {
   habit: Habit;
@@ -31,14 +31,14 @@ export function HabitCard({
   return (
     <article
       data-testid={`habit-card-${slug}`}
-      data-completed={completedToday ? 'true' : 'false'}
+      data-completed={completedToday ? "true" : "false"}
       className={`neo-card transition-colors ${
-        completedToday ? 'bg-accent-strong text-ink' : 'bg-surface'
+        completedToday ? "bg-accent-strong text-ink" : "bg-surface"
       }`}
     >
       <header className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="text-xl font-black tracking-tight break-words">
+          <h3 className="text-xl font-black tracking-tight wrap-break-word">
             {habit.name}
           </h3>
           {habit.description && (
@@ -48,7 +48,7 @@ export function HabitCard({
         <span
           data-testid={`habit-streak-${slug}`}
           className="neo-tag whitespace-nowrap"
-          aria-label={`Current streak: ${streak} day${streak === 1 ? '' : 's'}`}
+          aria-label={`Current streak: ${streak} day${streak === 1 ? "" : "s"}`}
         >
           <HugeiconsIcon icon={Fire02Icon} size={14} />
           {streak}
@@ -61,10 +61,10 @@ export function HabitCard({
           data-testid={`habit-complete-${slug}`}
           aria-pressed={completedToday}
           onClick={() => onToggle(habit.id)}
-          className={`neo-btn ${completedToday ? 'neo-btn-secondary' : ''}`}
+          className={`neo-btn ${completedToday ? "neo-btn-secondary" : ""}`}
         >
           <HugeiconsIcon icon={CheckmarkCircle02Icon} size={18} />
-          {completedToday ? 'Done today' : 'Mark done'}
+          {completedToday ? "Done today" : "Mark done"}
         </button>
         <button
           type="button"
@@ -78,6 +78,7 @@ export function HabitCard({
         <button
           type="button"
           data-testid={`habit-delete-${slug}`}
+          data-action="confirm-delete-button"
           onClick={() => onRequestDelete(habit)}
           className="neo-btn neo-btn-danger"
           aria-label={`Delete ${habit.name}`}

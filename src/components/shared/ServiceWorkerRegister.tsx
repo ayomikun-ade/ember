@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export function ServiceWorkerRegister() {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!('serviceWorker' in navigator)) return;
+    if (typeof window === "undefined") return;
+    if (!("serviceWorker" in navigator)) return;
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== "production") {
       navigator.serviceWorker
         .getRegistrations()
         .then((regs) => regs.forEach((r) => r.unregister()))
@@ -16,16 +16,17 @@ export function ServiceWorkerRegister() {
     }
 
     const onLoad = () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {
+      // serviceWorker marker for PWA registration
+      navigator.serviceWorker.register("/sw.js").catch(() => {
         /* registration failure is non-fatal */
       });
     };
 
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       onLoad();
     } else {
-      window.addEventListener('load', onLoad);
-      return () => window.removeEventListener('load', onLoad);
+      window.addEventListener("load", onLoad);
+      return () => window.removeEventListener("load", onLoad);
     }
   }, []);
 

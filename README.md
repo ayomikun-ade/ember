@@ -1,5 +1,7 @@
 # Ember — Habit Tracker PWA
 
+## Project Overview
+
 A mobile-first habit tracker built as a Progressive Web App. All data lives
 locally in `localStorage`, the app works offline once cached, and the UI is a
 dark, neobrutalism take on streak tracking. Implementation of the Stage 3
@@ -12,7 +14,7 @@ Frontend Wizards Technical Requirements Document.
 
 ---
 
-## Setup
+## Setup Instructions
 
 Requires Node.js 20+ and `pnpm`.
 
@@ -23,7 +25,7 @@ pnpm exec playwright install chromium   # one-time, ~150 MB, for e2e
 
 ---
 
-## Run the app
+## Run Instructions
 
 ```bash
 pnpm dev                  # development on port 3000
@@ -35,7 +37,9 @@ session exists) or `/login`.
 
 ---
 
-## Run the tests
+## Test Instructions
+
+Run the tests
 
 | Script                  | What it does                                                                                         |
 | ----------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -46,6 +50,20 @@ session exists) or `/login`.
 
 Run `pnpm build` once before your first `pnpm test:e2e`. Coverage HTML lands
 in `coverage/`.
+
+### Test File Mapping
+
+| Feature | Test File |
+|---------|----------|
+| Authentication (unit) | `tests/unit/auth.test.ts` |
+| Habits (unit) | `tests/unit/habits.test.ts` |
+| URL slug generation | `tests/unit/slug.test.ts` |
+| Local storage helpers | `tests/unit/storage.test.ts` |
+| Streak calculation | `tests/unit/streaks.test.ts` |
+| Input validation | `tests/unit/validators.test.ts` |
+| Auth flow (integration) | `tests/integration/auth-flow.test.tsx` |
+| Habit form (integration) | `tests/integration/habit-form.test.tsx` |
+| E2E app tests | `tests/e2e/app.spec.ts` |
 
 ---
 
@@ -67,7 +85,9 @@ and fall back gracefully on corrupted JSON.
 
 ---
 
-## PWA implementation
+## PWA Support
+
+Ember is a Progressive Web App with full offline support:
 
 - **Manifest** ([public/manifest.json](public/manifest.json)) — `standalone`
   display, `#0B0D10` theme, two PNG icons plus maskable variants for adaptive
